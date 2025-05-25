@@ -3,6 +3,11 @@
     "version": "1.0.0",
     "description": "Beyonddream's blog",
     "scripts": {
-      "build": "eleventy"
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+    },
+    "license": "MIT",
+    "dependencies": {
+      "@11ty/eleventy": "^3.1.0"
     }
   }
