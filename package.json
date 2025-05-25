@@ -1,0 +1,8 @@
+{
+    "name": "beyonddream.github.io",
+    "version": "1.0.0",
+    "description": "Beyonddream's blog",
+    "scripts": {
+      "build": "eleventy"
+    }
+  }
