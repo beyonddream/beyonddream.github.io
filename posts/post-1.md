@@ -1,5 +1,6 @@
 ---
 title: How to read and write a set of datetime partitioned files using Spark
+date: 2025-05-25
 ---
 
 # Introduction
