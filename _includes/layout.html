@@ -4,13 +4,28 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{{ title | default: "Thoughts from beyond dreamscape." }}</title>
+		<link rel="stylesheet" href="/styles/bundle.css">
 	</head>
 	<body>
 		<header>
-			<h1>{{ title | default: "Thoughts from beyond dreamscape." }}</h1>
+			<nav>
+				<div class="nav-brand">
+                    <a href="/">Beyond Dreamscape</a>
+                </div>
+			</nav>
 		</header>
-		<main>
-			{{ content }}
-		</main>
+		<div class="container">
+			<main>
+				{% if title %}
+                    <h1>{{ title }}</h1>
+                {% endif %}
+				{{ content }}
+			</main>
+		</div>
+		<footer>
+            <div class="container">
+                <p>&copy; {{ '' | date: '%Y' }} Beyond Dreamscape. All rights reserved.</p>
+            </div>
+        </footer>
 	</body>
 </html>
