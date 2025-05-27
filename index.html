@@ -1,6 +1,16 @@
 ---
 layout: layout.html
 ---
-{% for post in collections.post %}
-<h2><a href="{{ post.url }}">{{ post.data.title }} [<time>{{ post.date | date: "%Y-%m-%d" }}</time>]</a></h2>
-{% endfor %}
+<ul class="post-list">
+    {% for post in collections.post %}
+        <li>
+            <div class="post-header">
+                <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                <a class="post-title" href="{{ post.url }}">{{ post.data.title }}</a>
+            </div>
+            {% if post.data.description %}
+                <p>{{ post.data.description }}</p>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

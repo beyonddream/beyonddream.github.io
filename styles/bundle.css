@@ -6,150 +6,118 @@
     --accent-color: #8b5cf6;
     --muted-text: #94a3b8;
 }
-  
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
-    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
-  }
-  
-  .container {
+}
+
+.container {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
-  }
-  
-  header {
+}
+
+header {
     background-color: var(--secondary-background);
     padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  nav {
+    margin-bottom: 2rem;
+}
+
+nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     max-width: 800px;
     margin: 0 auto;
     padding: 0 2rem;
-  }
-  
-  .nav-links {
+}
+
+.nav-brand a {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nav-links {
     display: flex;
     gap: 2rem;
-  }
-  
-  .nav-links a {
+}
+
+.nav-links a {
     color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
-  }
-  
-  .nav-links a:hover {
+}
+
+.nav-links a:hover {
     color: var(--primary-color);
-  }
-  
-  article {
-    margin: 2rem 0;
-  }
-  
-  h1 {
+}
+
+main h1 {
     font-size: 2.5rem;
     color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-  
-  h2 {
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin: 2rem 0 1rem;
-  }
-  
-  h3 {
-    font-size: 1.5rem;
-    color: var(--text-color);
-    margin: 1.5rem 0 1rem;
-  }
-  
-  p {
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-  }
-  
-  a {
-    color: var(--primary-color);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  code {
-    background-color: var(--secondary-background);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-family: 'Fira Code', monospace;
-  }
-  
-  pre {
-    background-color: var(--secondary-background);
-    padding: 1rem;
-    border-radius: 8px;
-    overflow-x: auto;
-  }
-  
-  blockquote {
-    border-left: 4px solid var(--primary-color);
-    margin: 1.5rem 0;
-    padding-left: 1rem;
-    color: var(--muted-text);
-  }
-  
-  .post-meta {
-    color: var(--muted-text);
-    font-size: 0.9rem;
     margin-bottom: 2rem;
-  }
-  
-  .tag {
+}
+
+main h2 {
+    margin-top: 2rem;
+}
+
+main h2 a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+main h2 time {
+    color: var(--muted-text);
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-list li {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--secondary-background);
+}
+
+footer {
     background-color: var(--secondary-background);
-    color: var(--text-color);
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    margin-right: 0.5rem;
-  }
-  
-  .tag:hover {
-    background-color: var(--primary-color);
-  }
-  
-  footer {
-    background-color: var(--secondary-background);
-    padding: 2rem 0;
-    margin-top: 4rem;
+    padding: 1rem 0;
+    margin-top: auto;
     text-align: center;
     color: var(--muted-text);
-  }
-  
-  @media (max-width: 768px) {
+}
+
+footer .container {
+    padding: 0 2rem;  /* Add horizontal padding only */
+}
+
+@media (max-width: 768px) {
     .container {
-      padding: 1rem;
+        padding: 1rem;
     }
     
-    h1 {
-      font-size: 2rem;
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
     }
     
-    h2 {
-      font-size: 1.5rem;
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
     }
-    
-    h3 {
-      font-size: 1.25rem;
-    }
-  }
+}
