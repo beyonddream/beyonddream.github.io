@@ -2,10 +2,10 @@
 layout: layout.html
 ---
 <ul class="post-list">
-    {% for post in collections.post %}
+    {% for post in collections.post reversed %}
         <li>
             <div class="post-header">
-                <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                <span class="post-date">{{ post.date | htmlDateString }}</span>
                 <a class="post-title" href="{{ post.url }}">{{ post.data.title }}</a>
             </div>
             {% if post.data.description %}
