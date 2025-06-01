@@ -3,11 +3,22 @@
     "version": "1.0.0",
     "description": "Beyonddream's blog",
     "scripts": {
-    "start": "npx @11ty/eleventy --serve",
-    "build": "npx @11ty/eleventy"
+        "build": "npx @11ty/eleventy",
+        "start": "npx @11ty/eleventy --serve",
+        "debug": "DEBUG=* eleventy"
     },
     "license": "MIT",
-    "dependencies": {
-      "@11ty/eleventy": "^3.1.0"
+    "author": {
+        "name": "Beyonddream",
+        "url": "https://www.beyonddream.me"
+    },
+    "devDependencies": {
+      "@11ty/eleventy": "^3.1.0",
+      "@11ty/eleventy-plugin-rss": "^2.0.4",
+      "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
+      "@11ty/eleventy-navigation": "^1.0.4",
+      "markdown-it": "^14.1.0",
+      "markdown-it-anchor": "^9.2.0",
+      "luxon": "^3.6.1"
     }
-  }
+}
