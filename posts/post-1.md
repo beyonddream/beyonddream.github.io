@@ -1,5 +1,5 @@
 ---
-title: How to read and write a set of deeply nested datetime partitioned files using Spark (Pre and Post LLM Coding Agents)
+title: Problem Solving in the Era of Pre and Post-LLM Coding Agents - A Case Study
 date: 2025-05-30
 ---
 
