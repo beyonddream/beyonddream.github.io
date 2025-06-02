@@ -3,6 +3,7 @@ const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
+const mdTableOfContents = require("markdown-it-table-of-contents");
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
@@ -27,7 +28,11 @@ module.exports = function(eleventyConfig) {
         level: [1, 2, 3, 4],
         }),
         slugify: eleventyConfig.getFilter("slug"),
-    });
+    }).use(mdTableOfContents, {
+        containerHeaderHtml: "<h2>Table of Contents</h2>",
+        containerClass: "table-of-contents",
+      });
+
     eleventyConfig.setLibrary("md", markdownLibrary);
 
     eleventyConfig.addFilter("readableDate", (dateObj) => {
