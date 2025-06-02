@@ -3,6 +3,8 @@ title: How to read and write a set of deeply nested datetime partitioned files u
 date: 2025-05-30
 ---
 
+[[toc]]
+
 ## Introduction
 
 Approximately an year ago, while at work, I had to implement a data pipeline job that among other things need to read and write datetime partitioned folders from one location to another, preserving the partitioning information while writing it to the sink. When I researched online on how to do this in spark, I found very few tutorials giving an end-to-end solution that worked especially when the partitions are deeply nested and we don't know beforehand the values these folder names will take (e.g. `year=*/month=*/day=*/hour=*/*.csv`). Below, I have provided one such implementation using Spark. Note that this was before LLM assisted coding agents had become more widespread and efficient (I also provided another version by claude 3.5 sonnet).
