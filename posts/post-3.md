@@ -15,8 +15,8 @@ Many moons ago in my previous team at work, we had few legacy services implement
 
 The two main problem statements I was faced with are:
 
-1) How to avoid overloading a script that is struggling to handle high contention ?
-2) How to decide when it is safe to retry ?
+1) How to avoid overloading a service that is struggling to handle high request volume ?
+2) How to decide the frequency of retry ?
 
 The answers to them are Circuit Breaker and Exponential Backoff respectively.
 
