@@ -7,7 +7,7 @@ date: 2025-06-10
 
 ## Overview
 
-This page contains the absolute minimum of what I think every beginner in Python programming language should internalize. I have primarily written it for myself to serve as a reference to lookup when needed. Note, the current document is not meant to be a first encounter for learning Python - for that check the reference section.
+This page contains the absolute minimum of what I think every journeyman in Python programming language should internalize. I have primarily written it for myself to serve as a reference to lookup when needed. Note, the current document is not meant to be a first encounter for learning Python - for that check the reference section.
 
 ## Python Code Style
 
