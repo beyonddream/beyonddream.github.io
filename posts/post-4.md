@@ -95,6 +95,39 @@ def outer():
 
 ## Imports
 
+## Numbers
+
+## Immutable Sequences
+
+## Mutable Sequences
+
+## List/Set Comprehension
+
+## Map, Zip, Filter
+
+## IterTools
+
+## Generators
+
+## Conditional
+
+## Looping
+
+## Iterators
+
+## Functions
+
+## Decorators
+
+## Class
+
+## Exceptions
+
+## Typing
+
+## Testing
+
+## Debugging
 
 
 ## Reference
