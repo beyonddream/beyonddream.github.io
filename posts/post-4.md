@@ -57,6 +57,46 @@ Refer to PEP8 - https://www.python.org/dev/peps/pep-0008/
   employee2 = Employee("Jane", "", "Doe", 20, 2)
   ```
 
+## Scopes
+
+Order of scope evaluation while trying to find a name in namespace:
+LEGB (Local, Enclosing function, Global, Built-in)
+
+### Modify a global variable
+
+If you have a function and want to modify a global variable within the function
+
+```python
+x = 10
+
+def func():
+    global x # 'x' is in global namespace
+    x += 1
+
+func()
+# x is now 11
+```
+
+### Modify a variable in outer scope
+
+If you have a nested function and want to modify a variable in the outer scope.
+
+```python
+def outer():
+    x = 10
+
+    def inner():
+        nonlocal x # modifies outer 'x'
+        x += 1
+
+    inner()
+    # 'x' is now 11
+```
+
+## Imports
+
+
+
 ## Reference
 
 [Learning Python by Fabrizio Romano](https://books.google.com/books/about/Learn_Python_Programming.html?id=abtLEAAAQBAJ) - A good first book to learn Python for someone who already know another language.
