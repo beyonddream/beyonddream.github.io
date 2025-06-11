@@ -1,5 +1,5 @@
 ---
-title: Python programming language - a reference for the journeyman
+title: Notes on Python programming language - a reference for the journeyman
 date: 2025-06-10
 ---
 
