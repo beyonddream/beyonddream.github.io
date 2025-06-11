@@ -1,5 +1,5 @@
 ---
-title: Python programming language - a long form notes
+title: Python programming language - a reference for the journeyman
 date: 2025-06-10
 ---
 
@@ -7,7 +7,7 @@ date: 2025-06-10
 
 ## Overview
 
-This page contains the absolute minimum of what I think every beginner in Python programming language should know. I have primarily written it for myself to serve as a reference to lookup when needed.
+This page contains the absolute minimum of what I think every beginner in Python programming language should internalize. I have primarily written it for myself to serve as a reference to lookup when needed. Note, the current document is not meant to be a first encounter for learning Python - for that check the reference section.
 
 ## Python Code Style
 
@@ -17,14 +17,14 @@ Refer to PEP8 - https://www.python.org/dev/peps/pep-0008/
 
 ### Package and Module
 
-* module
+* Module
   * a .py file.
-* package
+* Package
   * set of modules grouped together.
   * a folder which has .py files.
   * it must contain a `__init__.py` file inside this folder for it to qualify as a package.
   * as of 3.3, `__init__.py` is not strictly required.
-* class
+* Class
   
   ```python
   class Bike:
@@ -33,13 +33,31 @@ Refer to PEP8 - https://www.python.org/dev/peps/pep-0008/
         self.frame_material = frame_material
     
     def print_detail(self):
-        print("color : %s, frame_material: %s" % (self.color, self.frame_material))  
+        print(f"color : {self.color}, frame_material: {self.frame_material}")
     
     red_bike = Bike('Red', 'Carbon fiber')
     red_bike.print_detail()  # color : Red, frame_material: Carbon fiber
   ```  
+* Dataclass
+
+  ```python
+  from dataclasses import dataclass
+
+  @dataclass
+  class Employee:
+    """ Immutable public data of employee information """
+    first_name: str
+    middle_name: str
+    last_name: str
+    age: str
+    department_id: int
+
+
+  employee1 = Employee("John", "", "Doe", 23, 1)
+  employee2 = Employee("Jane", "", "Doe", 20, 2)
+  ```
 
 ## Reference
 
-[Learning Python by Fabrizio Romano](https://books.google.com/books/about/Learn_Python_Programming.html?id=abtLEAAAQBAJ)
+[Learning Python by Fabrizio Romano](https://books.google.com/books/about/Learn_Python_Programming.html?id=abtLEAAAQBAJ) - A good first book to learn Python for someone who already know another language.
 
