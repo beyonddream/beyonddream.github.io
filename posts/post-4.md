@@ -5,7 +5,7 @@ date: 2025-06-10
 
 [[toc]]
 
-## Overview
+# Preface
 
 This page contains the absolute minimum of what I think every journeyman in Python programming language should internalize. I have primarily written it for myself to serve as a reference to lookup when needed. Note, the current document is not meant to be a first encounter for learning Python - for that check the reference section.
 
@@ -95,7 +95,55 @@ def outer():
 
 ## Imports
 
+```python
+# import a single symbol from a namespace
+from module_name import identifier
+# rename the symbol in current namespace while importing it
+from module_name import identifier as renamed_identifier
+# import all the exported symbols from a module
+import module_name
+# import from a module from a module in the current working directory
+from .module_name import identifier # number of dots specify the number of folders to backtrack up and one 'dot' is current folder
+```
+
 ## Numbers
+
+Almost everything in python is an object.
+
+```python
+# a is pointing to an object containing value 100000 which is of int data type
+a = 100000 
+
+# ** is a power operator
+a ** b 
+
+# integer division
+a // b
+
+# true division with fractional part
+a / b 
+
+# use this if you want to truncate the fractional part instead of flooring it.
+int(4.20) 
+
+# Boolean is a subtype of Integer in Python!
+a = True
+b = False
+
+# Other boolean operators are : not, and, or
+a and b
+a or b
+not a
+
+# real number stored in 64 bits - double precision floating point format
+pi = 3.141
+
+# complex number is supported natively
+c = 3.14 + 2.73j
+
+print(c.real) # prints 3.14
+print(c.imag) # prints 2.73
+```
 
 ## Immutable Sequences
 
@@ -130,7 +178,7 @@ def outer():
 ## Debugging
 
 
-## Reference
+# Reference
 
 [Learning Python by Fabrizio Romano](https://books.google.com/books/about/Learn_Python_Programming.html?id=abtLEAAAQBAJ) - A good first book to learn Python for someone who already know another language.
 
