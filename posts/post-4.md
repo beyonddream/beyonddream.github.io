@@ -1,6 +1,6 @@
 ---
 title: Notes on Python programming language - a reference for the journeyman
-date: 2025-06-10
+date: 2025-06-14
 ---
 
 [[toc]]
