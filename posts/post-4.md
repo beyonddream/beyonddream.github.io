@@ -192,7 +192,6 @@ Important immutable sequences are string, tuples, bytes. Immutables can be used 
 Important mutable sequences are List, bytearray, Set, Dict.
 
 ```python
-
   [] # empty list
 
   list() # same as []
@@ -279,7 +278,6 @@ Important mutable sequences are List, bytearray, Set, Dict.
 List/Set comprehension is succinct syntax to iterate over a list or set.
 
 ```python
-
   square = []
 
   # conventional iteration of list
@@ -296,7 +294,6 @@ List/Set comprehension is succinct syntax to iterate over a list or set.
 Nested comprehension
 
 ```python
-
   items = ['A', 'B']
 
   [(items[i], items[j]) for i in range(len(items)) for j in range(len(items))]
@@ -309,7 +306,6 @@ Nested comprehension
 Filtering comprehension
 
 ```python
-
   [n for n in range(10) if n % 2 == 0]
   #=> [0, 2, 4, 6, 8]
 ```
@@ -317,49 +313,340 @@ Filtering comprehension
 ## Map, Zip, Filter
 
 ```python
+  # map return a map object which can be iterated upon
+  m = map(lambda x: x, range(3))
+  list(m) # [0, 1, 2]
 
-# map return a map object which can be iterated upon
-m = map(lambda x: x, range(3))
-list(m) # [0, 1, 2]
+  # map also takes multiple iterators and the lambda takes as many parameters
+  m = map(lambda *x: x, range(3), 'abc')
+  list(m) # [(0, 'a'), (1, 'b'), (2, 'c')]
 
-# map also takes multiple iterators and the lambda takes as many parameters
-m = map(lambda *x: x, range(3), 'abc')
-list(m) # [(0, 'a'), (1, 'b'), (2, 'c')]
+  # combine elements from multiple iterators
+  z = zip(['a', 'b'], [1, 2])
+  list(z) # [('a', 1), ('b', 2)]
 
-z = zip(['a', 'b'], [1, 2])
-list(z)
-
-
-
-
+  f = filter(None, [1, 0, 3, 4])
+  list(f) #  [1, 3, 4] - None implies identitfy function, 0 (False) is removed.
 ```
 
 ## IterTools
 
+itertools / functools provide functions and classes that support functional programming style and general operations on callables. See more here: https://docs.python.org/3.13/library/functional.html
+
+```python
+  from itertools import permutations
+
+  print(list(permutations('ABC')))
+
+  #=> [('A', 'B', 'C'), ('A', 'C', 'B'), ('B', 'A', 'C'), ('B', 'C', 'A'), ('C', 'A', 'B'), ('C', 'B', 'A')]
+
+```
+
 ## Generators
+
+**Generator functions** - They are similar to functions but instead of returning value, they yield which allows the program to suspend and resume state between each call.
+
+```python
+  def get_squares(n):
+    for x in range(n):
+      yield x ** 2
+
+  squares = get_squares(3)
+  print(next(squares)) # print 0
+  print(next(sqaures)) # print 1
+  print(next(sqaures)) # print 4
+
+  def counter(start=0):
+    n = start
+    while True:
+      result = yield n
+      if result == 'Q':
+        break
+      n += 1
+      
+  c = counter()
+  print(next(c)) # 0
+  print(next(c)) # 1
+  print(c.send('Q')) # throws StopIteration
+
+```
+
+**Generator expressions** - They are similar to list comprehensions but instead of returning list, they return an object that produces results one by one.
+
+```python
+  cubes_gen = (k ** 3 for k in range(10)) # this is a generator expression
+  #=> (k ** 3) above can be replaced with any type of lambda or def function
+
+```
 
 ## Conditional
 
+if/elif/else
+
+```python
+  if income < 1000:
+    pass #do something
+  elif income < 2000:
+    pass #do something else
+  else:
+    pass #do entirely different thing
+```
+
+Ternary operator
+
+```python
+  discount = 25 if order_total > 101 else 0
+```
+
 ## Looping
+
+**For**
+
+```python
+  for number in [1, 2, 3]:
+  print number
+  
+  
+  for key in dict:
+    # keys printed in arbitrary order
+    print dict[key]
+
+```
+
+**While**
+
+```python
+  reminders = []
+  while n > 0:
+  remainder = n % 2
+  remainders.append(remainder)
+  n //= 2
+
+  remainders = remainders[::-1]
+  print(remainders)
+
+```
+
+**For Else**
+
+```python
+  class DriverException(Exception):
+    pass
+
+  people = [('Spock', 3), ('Kirk', 9)]
+
+  # If for loop is not exited via break then it will go to else clause.
+  for person, age in people:
+    if age >= 18:
+      break
+  else:
+    raise DriverException('Driver not found.')
+```
 
 ## Iterators
 
+Any class that defines **\_\_iter\_\_()** and **\_\_getitem\_\_()** method can be used as iterators. Iterator is an object capable of returning its value one at a time.
+
+```python
+  class CustomIterator:
+      def __init__(self, data):
+          self.data = data
+      
+      def __iter__(self):
+          return iter(self.data)
+      
+      def __getitem__(self, index):
+          return self.data[index]
+
+  my_list = [1, 2, 3, 4, 5]
+  iterator = CustomIterator(my_list)
+
+  list(iterator) #=> [1, 2, 3, 4, 5]
+```
+
 ## Functions
+
+Standard fare as any other language. Nice thing about python function is it can return multiple values. One main thing to consider - Avoid mutable defaults arguments.
+
+```python
+
+  def func(a, b, c):
+    print(a, b, c)
+
+  func(a=1, c=3, b=2)
+  func(1, 3, 3)
+
+  def func2(a=10):
+    print a
+
+  func2()
+  func2(11)
+```
+
+**Variable positional arguments** 
+It can be used to pass variable number of positional arguments.
+
+```python
+  def min(*args):
+    # args is a tuple now
+    if args:
+      mn = args[0]
+      for value in args[1:]:
+        if value < mn:
+          mn = value
+      print mn
+
+  min(1, 3, 4, -1)
+
+  values = (1, 3, 4, -1)
+  min(*values) # unpacking the tuple to pass it as separate params
+
+ ```
+**Variable keyword argument**
+It is similar to variable positional argument but uses ** syntax and collects the parameters in a dict.
+
+```python
+  def func(**kwargs):
+    print kwargs
+  
+  func(a=1, b=10)
+  func(**dict(a=1, b=10))
+```
+
+**Anonymous function (lambda)**
+
+```python
+  lambda x: x
+  lambda _: print 'hi' # argument not used can be denote by 'underscore'
+```
 
 ## Decorators
 
+A pattern to add extra functionality to a function in a DRY (Don't Repeat Yourself) manner.
+
+```python
+  from time import sleep, time
+  from functools import wraps
+
+  def measure(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+      t = time()
+      func(*args, **kwargs)
+      print(func.__name__, 'took:', time() - t)
+    return wrapper
+  
+  @measure
+  def f(sleep_time=0.1):
+    """I'm a dog and I love sleeping!"""
+    sleep(sleep_time)
+    
+  f(sleep_time=0.3)
+  print(f.__name__, ':', f.__doc__)
+
+```
+
+Decorator factory passes arguments to decorator to modify its behavior dynamically.
+
 ## Class
+
+Just a basic class and sub-class knowledge is good enough.
+
+```python
+  class Book:
+    pass
+  
+  #Ebook extends Book
+  class EBook(Book):
+    pass
+  
+  class EBook(Book):
+    def __init__(self, title, format):
+      Book.__init__(self, title)
+      self.format = format
+```
 
 ## Exceptions
 
+```python
+  class Exception1(Exception):
+    pass
+
+  class Exception2(Exception):
+    pass
+
+  class Exception3(Exception):
+    pass
+
+  try:
+    pass # some code
+  except Exception1:
+    pass # react to Exception1
+  except (Exception1, Exception2):
+    pass # react to Exception1 and Exception2
+  except Exception3:
+    pass # react to Exception3
+```
+
 ## Typing
+
+Type hints are not enforced at runtime. They are very useful though for e.g. running static analysis tools like  `mypy` and documenting function signature.
+
+```python
+  from typing import List
+
+  y : int
+
+  # function param
+  def func1(x: int) -> List:
+    y = 10 * x
+    return [y]
+```
 
 ## Testing
 
+**Lazy way**
+
+```python
+  #poor man's unit testing of module
+  if __name__ == '__main__':
+    funcToTest()
+```
+
+**Better way**
+
+```python
+  # content of test_client_module.py
+
+  import pytest
+  from some_client_module import client_function_add
+
+  # test functions start with test_
+  def test_add_positive_numbers():
+      assert client_function_add(2, 3) == 5
+```
+
+To run the above test file:
+
+```bash
+  $ pip install pytest
+  $ pytest test_client_module.py
+```
+
 ## Debugging
 
+There are various sophisticated ways to debug python. But the best one that is readily available to everyong is:
+
+```python
+  print("inspect values in your code")
+```
+
+Another option is **pdb**. Insert below at near the problematic location in your code:
+
+```python
+  import pdb; pdb.set_trace()
+```
 
 # Reference
 
 [Learning Python by Fabrizio Romano](https://books.google.com/books/about/Learn_Python_Programming.html?id=abtLEAAAQBAJ) - A good first book to learn Python for someone who already know another programming language.
-
