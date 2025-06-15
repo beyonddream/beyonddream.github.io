@@ -404,7 +404,7 @@ Ternary operator
 
 ```python
   for number in [1, 2, 3]:
-  print number
+    print number
   
   
   for key in dict:
@@ -418,9 +418,9 @@ Ternary operator
 ```python
   reminders = []
   while n > 0:
-  remainder = n % 2
-  remainders.append(remainder)
-  n //= 2
+    remainder = n % 2
+    remainders.append(remainder)
+    n //= 2
 
   remainders = remainders[::-1]
   print(remainders)
@@ -449,14 +449,14 @@ Any class that defines **\_\_iter\_\_()** and **\_\_getitem\_\_()** method can b
 
 ```python
   class CustomIterator:
-      def __init__(self, data):
-          self.data = data
-      
-      def __iter__(self):
-          return iter(self.data)
-      
-      def __getitem__(self, index):
-          return self.data[index]
+    def __init__(self, data):
+        self.data = data
+    
+    def __iter__(self):
+        return iter(self.data)
+    
+    def __getitem__(self, index):
+        return self.data[index]
 
   my_list = [1, 2, 3, 4, 5]
   iterator = CustomIterator(my_list)
