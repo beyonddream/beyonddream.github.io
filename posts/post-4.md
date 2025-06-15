@@ -147,7 +147,60 @@ print(c.imag) # prints 2.73
 
 ## Immutable Sequences
 
+Important immutable sequences are string, tuples, bytes. Immutables can be used as keys in python dictionary.
+
+```python
+#string - unicode codepoint
+s = ""
+s = ''
+# multiline string - useful for method level comments among other things.
+s = """
+"""
+s = '''
+'''
+
+s_encoded = s.encode('utf-8') # utf-8 encoded
+s_encoded.decode('utf-8')
+
+s_bytes = b"A bytes object" # a bytes object
+
+s = "abcd"
+s[0] # 'a'
+
+s[:3] # 'abc' - s[start:stop:step] - stop is exclusive
+
+s[:] # make a copy of original
+
+s[::-1] # copy of original in reverse order
+
+t = () # tuple, a sequence of arbitrary python objects
+
+t = (42,) # need a comma at the end for an one element tuple
+
+a, b, c = 3, 2, 1 # multiple assignments
+
+2 in t # membership test
+
+a, b = b, a # pythonic way to swap two variables
+
+```
+
 ## Mutable Sequences
+
+Important mutable sequences are List, bytearray, Set, Dict.
+
+```python
+
+[] # empty list
+
+list() # same as []
+
+a = [1, 2, 3]
+
+a = [x + 2 for x in [1, 2, 3]] # a = [3, 4, 5]
+
+
+```
 
 ## List/Set Comprehension
 
@@ -180,5 +233,5 @@ print(c.imag) # prints 2.73
 
 # Reference
 
-[Learning Python by Fabrizio Romano](https://books.google.com/books/about/Learn_Python_Programming.html?id=abtLEAAAQBAJ) - A good first book to learn Python for someone who already know another language.
+[Learning Python by Fabrizio Romano](https://books.google.com/books/about/Learn_Python_Programming.html?id=abtLEAAAQBAJ) - A good first book to learn Python for someone who already know another programming language.
 
