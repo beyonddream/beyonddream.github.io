@@ -14,10 +14,10 @@ Given below is a sample usage of the module. A local database called `bio.db` wi
 ```python
   #!/usr/bin/env python
 
+  import dbm
   import shelve
 
   class Bio:
-
       def __init__(self, name, age):
           self.name = name
           self.age = age
@@ -27,14 +27,15 @@ Given below is a sample usage of the module. A local database called `bio.db` wi
 
   def main(name: str, age: int):
       with (d := shelve.open("bio", writeback=True)):
+          print(f"The shelve module is currently using: {dbm._defaultmod}")
           d[name] = Bio(name, age)
-      
+
       with (d := shelve.open("bio")):
           if name in d:
             print(d[name])
 
   if __name__ == '__main__':
-      main("beyonddream", 18)
+      main("Jane Doe", 18)
 ```
 
 # Source Code
@@ -43,18 +44,18 @@ I will go over the source code of `shelve.py` and document many interesting tidb
 
 ```python
 
-    """Manage shelves of pickled objects.
+  """Manage shelves of pickled objects.
 
-    A "shelf" is a persistent, dictionary-like object.  The difference
-    with dbm databases is that the values (not the keys!) in a shelf can
-    be essentially arbitrary Python objects -- anything that the "pickle"
-    module can handle.  This includes most class instances, recursive data
-    types, and objects containing lots of shared sub-objects.  The keys
-    are ordinary strings.
+  A "shelf" is a persistent, dictionary-like object.  The difference
+  with dbm databases is that the values (not the keys!) in a shelf can
+  be essentially arbitrary Python objects -- anything that the "pickle"
+  module can handle.  This includes most class instances, recursive data
+  types, and objects containing lots of shared sub-objects.  The keys
+  are ordinary strings.
 
-    ...
+  ...
 
-    """
+  """
 ```
 One of the main advantage of using Shelve instead of directly using `dbm` module is that it natively supports working with and persisting dictionary like objects in python. It delegates the low level step of serializing the keys and values into bytes to `dbm` module internally. Allowing only `str` keys is also pragmatic design choice.
 
@@ -77,7 +78,7 @@ One of the main advantage of using Shelve instead of directly using `dbm` module
           return '<Closed Dictionary>'
 ```
 
-It is interesting to note that the `shelve` internally uses `pickle` module to serialize the value. Pickle is the standard binary serializer/deserializer of python objects that supports more types than `json`. Though, it is not secure esp. when deserializing from untrusted source.
+It is interesting to note that the `shelve` internally uses `pickle` module to serialize the value. Pickle is the standard binary serializer/deserializer of python objects that supports more types than `json`. Though, it is not secure especially when deserializing from untrusted source.
 
 Defining `__all__` is a convention in python. The symbols included in it are the public API of the module. Only symbols in `__all__` are imported into another module when `from shelve import *` is run.
 
