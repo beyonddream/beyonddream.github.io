@@ -11,11 +11,11 @@ This article attemps to articulate a mysterious feeling that I usually have when
 
 ## Case Studies
 
-In order to illustrate my points, I will use many small utility tools I wrote as specimen, explaining the motivation for its existence and how and why it was fun but more importantly to put on notice a feeling akin to romanticism intermixed with a sense of pleasing the Self vis-a-vis Other.
+In order to illustrate my points, I will use many small utility tools I wrote as specimen, explaining the motivation for its existence and how and why it was fun but more importantly to put on notice a feeling akin to romanticism intermixed with a sense of pleasing one's own self.
 
 ### 1) Remove ^M (press Ctrl + V and M in succession) character at the end of line.
 
-I wrote the below script in Perl. Perl was and probably is pejoratively considered as a "write only" language. But Perl was the first language that I professionally programmed in - a project to port Perl CGI web-app to Java. Until few years ago, Perl was the first scripting language that I would reach for to implement small single purpose utility tool. Now it is Python.
+I wrote the below script in Perl. Perl was and probably is pejoratively considered as a "write only" language. But Perl was the first language that I professionally programmed in - a project to port Perl CGI web application to Java web application. Until few years ago, Perl was the first scripting language that I had reached for to implement small single purpose utility tool. Now it is Python.
 
 ```perl
   use strict;
@@ -51,7 +51,7 @@ I wrote the below script in Perl. Perl was and probably is pejoratively consider
   &check_and_remove_control_M_character if($opts{removeControlChar});
 ```
 
-From git history, the above script was written ~9 years ago. If I have to judge the code quality now, I would think it fared well in terms of code size to functionality and I was able to understand what it does (subjectively speaking). I forgot what `tie` and `untie` does but I first vaguely guessed and then confirmed via github copilot that it associates an array with the lines in a file via `Tie::File` module. When the array is updated, `untie` commit's the changed back to the file via same `Tie::File` module. I had the good sense to add comments and descriptive subroutine name while the option name `removeControlChar` could have been `files`. By taking advantage of local agentic tools, I could add this script to my `$PATH` and enable agents to use them to clean files containing CTRL+M characters before opening a pull request. When I first ran and saw it worked, I must have been on cloud nine and started liking Perl with warts and all. I think programmers ardently support their favorite languages with tooth and nail not because of its technical merit but the original magic it made them feel when they finally got a useful program to do their bidding. It is emotions all the way down.
+From git history, the above script was written ~9 years ago. If I have to judge the code quality now, I would think it fared well in terms of code size to functionality and I was able to understand what it does. I forgot what `tie` and `untie` does but vaguely guessed and then confirmed via github copilot that it associates an array with the lines in a file via `Tie::File` module. When the array is updated, `untie` commit's the changes back to the file via same `Tie::File` module. I had the good sense to add comments and a descriptive subroutine name while the option `removeControlChar` could have been named as `files`. In present time, by taking advantage of local agentic tools, I could add this script to my `$PATH` and enable agents to use them to clean files containing CTRL+M characters before opening a pull request. When I first ran and saw it worked, I must have been on cloud nine and started liking Perl with warts and all. I think programmers ardently support their favorite languages with tooth and nail not because of its technical merit but the original magic it made them feel when they finally got a useful program to do their bidding. It is emotions all the way down.
 
 
 ### 2) Bounded mock data generator
@@ -185,7 +185,7 @@ But it must have worked for a limited use-case and I had the pleasure of discove
   main();
 ```
 
-A script that I wrote ~8yrs ago to print number of files of a particular file extension. I could have just used `find /path/to/folder -type f -name "*.ext" | wc -l` but I decided to implement a javascript utility program. It was a classic NIH (Not Invented Here) itch that I tried to scratch but I had absolute blast learning about npm modules like `path`, `readline` and `recursive-readdir`. It was both silly and useful with user interaction to boot. Reading it now, I am embarrassed that it used global variables and no error handling but that is the point of quick and dirty scripts like this which will never see the light of production.
+A script that I wrote ~8yrs ago to print number of files of a particular file extension. I could have just used `find /path/to/folder -type f -name "*.ext" | wc -l` but I decided to implement a javascript utility program. It was a classic NIH (Not Invented Here) itch that I tried to scratch but I must have had an absolute blast learning about npm modules like `path`, `readline` and `recursive-readdir`. It was both silly and useful with user interaction to boot. Reading it now, I am embarrassed that it used global variables and no error handling but that is the point of quick and dirty scripts like this which will never see the light of production.
 
 ### 4) Magic 8 Ball answer generator.
 
@@ -254,3 +254,8 @@ A script that I wrote ~8yrs ago to print number of files of a particular file ex
   end
 ```
 
+This script doesn't serve me anything practical other than putting a smile on my face. It is supposed to be a magic crystal used by an oracle who prophesize answer to your questions. Goofy and I love it. I actually ported it to Ruby from someone else's Perl version. Git history shows ~2yrs ago. I must have been bitten by Ruby bug again. I always loved Ruby as a language and read many books about it but never had a chance to work on it professionally - this script could have been my unconscious bias to compensate for that lack.
+
+## Epilogue
+
+In my long career as a software engineer, there were many more utility scripts (both fun and silly) that I had written either for side-project or work that I don't have the space or patience to cover in this article. The bottom line is, programming away the mundane gives a pretext to experiment with various ideas in my mind and a cathartic release (psychologically speaking) for producing something creative to meet my own ends rather than as a trade artifact to be used in the machinary of capitalism in exchange for profit.
