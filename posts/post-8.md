@@ -97,6 +97,6 @@ In the original paper, the author uses the example of 500,000 words to be hypena
 
 ## Reference
 
-[1] - Original bloom filter (https://web.archive.org/web/20200806134244/https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=3F51E4FEB211B03342A9D6B94D4E8B92?doi=10.1.1.641.9096&rep=rep1&type=pdf)
+[1] - Original bloom filter (https://dl.acm.org/doi/10.1145/362686.362692)
 
 [2] - Counting bloom filter (addition operation supported) [https://web.archive.org/web/20200727040826/http://theory.stanford.edu/~rinap/papers/esa2006b.pdf]
