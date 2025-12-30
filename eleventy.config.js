@@ -14,6 +14,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPlugin(pluginNavigation);
     
     eleventyConfig.addPassthroughCopy("styles");
+    eleventyConfig.addPassthroughCopy("images");
 
     // Customize Markdown library and settings:
     let markdownLibrary = markdownIt({
