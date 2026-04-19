@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{{ title | default: "Thoughts from beyond dreamscape." }}</title>
+		<link rel="alternate" href="{{ site.url }}/feed.xml" type="application/rss+xml" title="{{ site.title }}">
 		<link rel="stylesheet" href="/styles/bundle.css">
 		<link rel="stylesheet" href="/styles/prism-base16-monokai.dark.css">
     <script>
@@ -22,9 +23,12 @@
   </head>
 	<body>
 		<header>
-			<nav>
+			<nav class="site-nav">
 				<div class="nav-brand">
                     <a href="/">Thoughts from beyond dreamscape</a>
+                </div>
+                <div class="nav-feed">
+                    <a href="/feed.xml">RSS Feed</a>
                 </div>
 			</nav>
 		</header>
