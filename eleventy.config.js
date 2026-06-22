@@ -4,6 +4,8 @@ const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const mdTableOfContents = require("markdown-it-table-of-contents");
+const markdownItTexmath = require("markdown-it-texmath");
+const katex = require("katex");
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
@@ -15,6 +17,9 @@ module.exports = function(eleventyConfig) {
     
     eleventyConfig.addPassthroughCopy("styles");
     eleventyConfig.addPassthroughCopy("images");
+    eleventyConfig.addPassthroughCopy({
+        "node_modules/katex/dist": "styles/katex",
+    });
 
     // Customize Markdown library and settings:
     let markdownLibrary = markdownIt({
@@ -32,6 +37,13 @@ module.exports = function(eleventyConfig) {
     }).use(mdTableOfContents, {
         containerHeaderHtml: "<h2>Table of Contents</h2>",
         containerClass: "table-of-contents",
+      }).use(markdownItTexmath, {
+        engine: katex,
+        delimiters: ["brackets", "dollars"],
+        katexOptions: {
+            throwOnError: false,
+            strict: "ignore",
+        },
       });
 
     eleventyConfig.setLibrary("md", markdownLibrary);
