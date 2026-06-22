@@ -206,3 +206,7 @@ These three proof techniques appear throughout mathematics and computer science.
 | Proof by Counterexample | Disproving universal statements |
 
 Mastering these techniques provides a strong foundation for studying algorithms, data structures, discrete mathematics, machine learning, and theoretical computer science.
+
+## References
+
+* Data Structures and Algorithm Analysis in C++ (Third Edition) by Mark Allen Weiss (Chapter 1)
