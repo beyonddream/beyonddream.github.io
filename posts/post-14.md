@@ -24,3 +24,91 @@ While following along a jupyter notebook assignment about planar data classifica
 #### Generated Image
 
 ![Image 1](/images/post14/image1.png)
+
+I was wondering how the colors are chosen from label classes (e.g. Y = 2) using the color palette which comes from `cmap`. The rest of the article is my attempt to understand it with the help of a custom implementation that is analogous to how it is implemented in matplotdb.
+
+## Custom Implementation
+
+```python
+from __future__ import annotations
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import matplotlib.colors as colors
+
+
+def normalize(x: float, vmin: float, vmax: float) -> float:
+    """Map x into [0, 1]."""
+    if vmax == vmin:
+        return 0.0
+    t = (x - vmin) / (vmax - vmin)
+    return max(0.0, min(1.0, t))
+
+
+def lerp(a: float, b: float, t: float) -> float:
+    """Linear interpolation between a and b."""
+    return a + (b - a) * t
+
+
+def custom_cmap(x: float, vmin: float, vmax: float, colors: list[tuple[int, int, int]]) -> tuple[float, float, float, float]:
+    """Map x to an RGBA tuple using a list of RGB anchor colors."""
+    t = normalize(x, vmin, vmax)
+    n = len(colors)
+
+    if n == 0:
+        raise ValueError("colors must contain at least one RGB tuple")
+    if n == 1:
+        r, g, b = colors[0]
+        return (r / 255.0, g / 255.0, b / 255.0, 1.0)
+
+    pos = t * (n - 1)
+    i = int(pos)
+
+    if i >= n - 1:
+        r, g, b = colors[-1]
+        return (r / 255.0, g / 255.0, b / 255.0, 1.0)
+
+    local_t = pos - i
+    c1 = colors[i]
+    c2 = colors[i + 1]
+
+    r = lerp(c1[0], c2[0], local_t)
+    g = lerp(c1[1], c2[1], local_t)
+    b = lerp(c1[2], c2[2], local_t)
+    return (r / 255.0, g / 255.0, b / 255.0, 1.0)
+
+
+def build_demo_colors(values: np.ndarray, colors: list[tuple[int, int, int]]) -> list[tuple[float, float, float, float]]:
+    vmin = float(values.min())
+    vmax = float(values.max())
+    return [custom_cmap(float(v), vmin, vmax, colors) for v in values]
+
+
+def main() -> None:
+    spectral_like = [
+        (158, 1, 66),
+        (213, 62, 79),
+        (244, 109, 67),
+        (253, 174, 97),
+        (254, 224, 139),
+        (230, 245, 152),
+        (171, 221, 164),
+        (102, 194, 165),
+        (50, 136, 189),
+        (94, 79, 162),
+    ]
+
+    values = np.array([0, 1, 2, 3], dtype=float)
+    vmin = float(values.min())
+    vmax = float(values.max())
+
+    print("Custom normalize + cmap demo")
+    print("-" * 40)
+    for v in values:
+        t = normalize(float(v), vmin, vmax)
+        rgba = custom_cmap(float(v), vmin, vmax, spectral_like)
+        print(f"value={v:.1f}, normalized={t:.2f}, rgba={rgba}")
+
+```
+
