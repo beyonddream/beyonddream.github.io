@@ -1,5 +1,6 @@
 ---
 title: "RGBA color scheme mapping and interpolation from input values."
+date: 2026-07-18
 tags:
   - bikeshedding
   - algorithm

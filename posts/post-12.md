@@ -1,5 +1,6 @@
 ---
 title: "Basic Proof Techniques for Software Engineers"
+date: 2026-06-21
 tags:
   - mathematics
   - algorithms
