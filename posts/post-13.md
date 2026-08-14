@@ -1,5 +1,6 @@
 ---
 title: "Terry Tao on how university students should control AI diet"
+date: 2026-06-28
 tags:
   - mathematics
   - ai
